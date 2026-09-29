@@ -66,7 +66,7 @@ export function Navbar({ brand }: { brand: string }) {
           <ThemeToggle />
           <div className="hidden lg:block">
             <Link href="/contact" className={buttonClasses({ size: "sm" })}>
-              Hire me
+              Contact Me
             </Link>
           </div>
           <button
@@ -104,7 +104,7 @@ export function Navbar({ brand }: { brand: string }) {
             })}
             <li className="mt-2 px-3 pb-2">
               <Link href="/contact" className={buttonClasses({ className: "w-full" })}>
-                Hire me
+                contact Me
               </Link>
             </li>
           </ul>
