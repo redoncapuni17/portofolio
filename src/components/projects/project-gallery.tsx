@@ -6,21 +6,21 @@ export function ProjectGallery({ images, title }: { images: ProjectImage[]; titl
 
   return (
     <section aria-labelledby="gallery-heading">
-      <h2 id="gallery-heading" className="text-2xl font-semibold">
+      <h2 id="gallery-heading" className="reveal text-2xl font-semibold">
         Screenshots
       </h2>
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+      <ul className="stagger mt-6 grid gap-4 sm:grid-cols-2">
         {images.map((image) => (
           <li key={image.id}>
-            <figure className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft">
-              <div className="relative aspect-[16/10] bg-slate-100">
+            <figure className="group hover-lift overflow-hidden rounded-2xl border border-line bg-surface shadow-soft hover:shadow-card">
+              <div className="relative aspect-[16/10] overflow-hidden bg-wash">
                 <Image
                   src={image.image_url}
                   alt={image.caption ?? `${title} screenshot`}
                   fill
                   loading="lazy"
                   sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               {image.caption ? (

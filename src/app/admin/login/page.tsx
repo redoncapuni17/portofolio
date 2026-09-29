@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LoginForm } from "@/components/admin/login-form";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { getSiteSettings } from "@/lib/queries/settings";
 
 export const metadata: Metadata = {
@@ -18,7 +19,8 @@ export default async function AdminLoginPage({ searchParams }: PageProps<"/admin
   const errorKey = typeof error === "string" ? error : undefined;
 
   return (
-    <main className="flex flex-1 items-center justify-center px-5 py-16">
+    <main className="relative flex flex-1 items-center justify-center px-5 py-16">
+      <ThemeToggle className="absolute right-5 top-5" />
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2.5 focus-ring rounded-md">

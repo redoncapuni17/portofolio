@@ -16,41 +16,42 @@ export function SkillsGrid({ groups }: { groups: Record<SkillCategory, Skill[]> 
   }
 
   return (
-    <div className="grid gap-5 md:grid-cols-3">
+    <div className="stagger grid gap-5 md:grid-cols-3">
       {(Object.keys(categoryMeta) as SkillCategory[]).map((category) => {
         const meta = categoryMeta[category];
         const skills = groups[category];
         return (
-          <section
-            key={category}
-            className="rounded-2xl border border-line bg-surface p-6 shadow-soft"
-            aria-labelledby={`skills-${category}`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="flex size-9 items-center justify-center rounded-lg bg-accent-soft text-accent">
-                <Icon name={meta.icon} className="size-4" />
-              </span>
-              <h3 id={`skills-${category}`} className="text-base font-semibold">
-                {meta.title}
-              </h3>
-            </div>
-            {skills.length > 0 ? (
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <li
-                    key={skill.id}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-canvas px-2.5 py-1.5 text-sm font-medium text-heading"
-                    title={skill.description ?? undefined}
-                  >
-                    <Icon name={skill.icon} className="size-3.5 text-accent" />
-                    {skill.name}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="mt-5 text-sm text-muted">Nothing here yet.</p>
-            )}
-          </section>
+          <div key={category} className="h-full">
+            <section
+              className="hover-lift h-full rounded-2xl border border-line bg-surface p-6 shadow-soft hover:border-accent-ring"
+              aria-labelledby={`skills-${category}`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex size-9 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                  <Icon name={meta.icon} className="size-4" />
+                </span>
+                <h3 id={`skills-${category}`} className="text-base font-semibold">
+                  {meta.title}
+                </h3>
+              </div>
+              {skills.length > 0 ? (
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <li
+                      key={skill.id}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-canvas px-2.5 py-1.5 text-sm font-medium text-heading transition-transform duration-200 hover:-translate-y-0.5"
+                      title={skill.description ?? undefined}
+                    >
+                      <Icon name={skill.icon} className="size-3.5 text-accent" />
+                      {skill.name}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-5 text-sm text-muted">Nothing here yet.</p>
+              )}
+            </section>
+          </div>
         );
       })}
     </div>

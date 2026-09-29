@@ -11,6 +11,7 @@ export function FeaturedProjects({ projects }: { projects: ProjectWithTech[] }) 
     <section className="container-page pb-20" aria-labelledby="featured-projects">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading
+          className="reveal"
           eyebrow="Selected work"
           title="Featured projects"
           description="A few products I have designed, built and shipped recently."
@@ -20,7 +21,7 @@ export function FeaturedProjects({ projects }: { projects: ProjectWithTech[] }) 
           <ArrowRight className="size-4" aria-hidden />
         </Button>
       </div>
-      <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="stagger mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <li key={project.id}>
             <ProjectCard project={project} />

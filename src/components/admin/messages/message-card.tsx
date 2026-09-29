@@ -29,7 +29,7 @@ export function MessageCard({ message }: { message: ContactMessage }) {
         <span
           className={cn(
             "mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full",
-            message.read ? "bg-slate-100 text-muted" : "bg-accent-soft text-accent",
+            message.read ? "bg-wash text-muted" : "bg-accent-soft text-accent",
           )}
         >
           {message.read ? <MailOpen className="size-4" aria-hidden /> : <Mail className="size-4" aria-hidden />}
@@ -62,7 +62,7 @@ export function MessageCard({ message }: { message: ContactMessage }) {
             <ActionButton
               variant="ghost"
               size="sm"
-              className="text-red-600 hover:bg-red-50 hover:text-red-700"
+              className="text-red-600 hover:bg-red-50 hover:text-red-700 dark:text-red-400 dark:hover:bg-red-950 dark:hover:text-red-300"
               confirmMessage={`Delete the message from ${message.name}?`}
               action={() => deleteMessage(message.id)}
             >

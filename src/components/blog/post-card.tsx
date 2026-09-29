@@ -9,15 +9,15 @@ export function PostCard({ post }: { post: BlogPostSummary }) {
   const href = `/blog/${post.slug}`;
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-shadow hover:shadow-card">
+    <article className="group hover-lift flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-soft hover:border-accent-ring hover:shadow-card">
       {post.cover_image ? (
-        <Link href={href} className="relative block aspect-[16/9] bg-slate-100 focus-ring" tabIndex={-1}>
+        <Link href={href} className="relative block aspect-[16/9] bg-wash focus-ring" tabIndex={-1}>
           <Image
             src={post.cover_image}
             alt=""
             fill
             sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </Link>
       ) : null}

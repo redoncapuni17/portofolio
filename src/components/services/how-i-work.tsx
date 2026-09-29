@@ -31,16 +31,20 @@ export function HowIWork() {
   return (
     <section className="border-t border-line bg-surface" aria-labelledby="how-i-work">
       <div className="container-page py-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Process</p>
-        <h2 id="how-i-work" className="mt-3 text-3xl font-semibold">
-          How I Work
-        </h2>
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="reveal">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Process</p>
+          <h2 id="how-i-work" className="mt-3 text-3xl font-semibold">
+            How I Work
+          </h2>
+        </div>
+        <ul className="stagger mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map(({ title, description, Icon }) => (
-            <li key={title} className="rounded-2xl border border-line bg-canvas p-6">
-              <Icon className="size-5 text-accent" aria-hidden />
-              <h3 className="mt-4 text-base font-semibold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-body">{description}</p>
+            <li key={title} className="h-full">
+              <div className="group hover-lift h-full rounded-2xl border border-line bg-canvas p-6 hover:border-accent-ring">
+                <Icon className="size-5 text-accent transition-transform duration-300 group-hover:scale-110" aria-hidden />
+                <h3 className="mt-4 text-base font-semibold">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-body">{description}</p>
+              </div>
             </li>
           ))}
         </ul>

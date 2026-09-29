@@ -1,15 +1,20 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
 
-  /* Surface & text tokens for the light portfolio theme */
+@theme {
+  /* Surface & text tokens. Overridden on html.dark. */
   --color-canvas: #f8fafc;
   --color-surface: #ffffff;
   --color-line: #e2e8f0;
   --color-heading: #0f172a;
   --color-body: #475569;
   --color-muted: #94a3b8;
+  --color-wash: #f1f5f9;
 
   /* Soft blue accent */
   --color-accent: #2563eb;
@@ -21,9 +26,28 @@
   --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 12px 32px -16px rgb(15 23 42 / 0.16);
 }
 
+/* Class-based dark theme. The init script sets .dark before paint. */
+.dark {
+  --color-canvas: #0b1220;
+  --color-surface: #121a2b;
+  --color-line: #2a384f;
+  --color-heading: #f1f5f9;
+  --color-body: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-wash: #1a2436;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #60a5fa;
+  --color-accent-soft: #172554;
+  --color-accent-ring: #1e3a8a;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.35), 0 8px 24px -12px rgb(0 0 0 / 0.55);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 16px 40px -18px rgb(0 0 0 / 0.65);
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
   }
 
   body {
@@ -50,5 +74,181 @@
 
   .focus-ring {
     @apply outline-none focus-visible:ring-2 focus-visible:ring-accent-ring focus-visible:ring-offset-2 focus-visible:ring-offset-canvas;
+  }
+
+  .hover-lift {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+  }
+
+  .enter {
+    animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .page-enter {
+    animation: page-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .menu-in {
+    animation: menu-in 0.22s ease-out;
+  }
+
+  .float-soft {
+    animation: float-soft 6.5s ease-in-out infinite;
+  }
+
+  .glow-orb {
+    animation: drift 9s ease-in-out infinite;
+  }
+
+  .pulse-dot {
+    animation: pulse-dot 2.2s ease-out infinite;
+  }
+
+  .group :is(.lucide-arrow-right, .lucide-arrow-up-right, .lucide-arrow-left) {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover :is(.lucide-arrow-right, .lucide-arrow-up-right) {
+    transform: translateX(3px);
+  }
+
+  .group:hover .lucide-arrow-left {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(14px, -18px, 0) scale(1.08);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgb(16 185 129 / 0.55);
+  }
+
+  70% {
+    box-shadow: 0 0 0 7px rgb(16 185 129 / 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(16 185 129 / 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal,
+  .stagger > * {
+    animation-name: rise-in;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: both;
+    animation-duration: auto;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+
+  .stagger > :nth-child(2) {
+    animation-range: entry 4% cover 34%;
+  }
+
+  .stagger > :nth-child(3) {
+    animation-range: entry 8% cover 40%;
+  }
+
+  .stagger > :nth-child(4) {
+    animation-range: entry 12% cover 44%;
+  }
+
+  .stagger > :nth-child(5) {
+    animation-range: entry 14% cover 46%;
+  }
+
+  .stagger > :nth-child(6) {
+    animation-range: entry 16% cover 48%;
+  }
+
+  .stagger > :nth-child(7) {
+    animation-range: entry 18% cover 50%;
+  }
+
+  .stagger > :nth-child(8) {
+    animation-range: entry 20% cover 52%;
+  }
+
+  .stagger > :nth-child(n + 9) {
+    animation-range: entry 12% cover 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .enter,
+  .menu-in,
+  .float-soft,
+  .glow-orb,
+  .pulse-dot,
+  .reveal,
+  .stagger > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

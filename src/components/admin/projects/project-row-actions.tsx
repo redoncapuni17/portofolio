@@ -25,7 +25,7 @@ export function ProjectRowActions({ id, title }: { id: string; title: string }) 
       <ActionButton
         variant="ghost"
         size="sm"
-        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+        className="text-red-600 hover:bg-red-50 hover:text-red-700 dark:text-red-400 dark:hover:bg-red-950 dark:hover:text-red-300"
         confirmMessage={`Delete "${title}"? This also removes its screenshots. This cannot be undone.`}
         action={() => deleteProject(id)}
         aria-label={`Delete ${title}`}

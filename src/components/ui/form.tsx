@@ -8,7 +8,7 @@ import type {
 import { cn } from "@/lib/utils/cn";
 
 const control =
-  "w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-heading placeholder:text-muted shadow-xs transition-colors focus-ring focus:border-accent disabled:cursor-not-allowed disabled:bg-slate-50";
+  "w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-heading placeholder:text-muted shadow-xs transition-colors focus-ring focus:border-accent disabled:cursor-not-allowed disabled:bg-wash";
 
 export function Label({ className, ...props }: LabelHTMLAttributes<HTMLLabelElement>) {
   return (
@@ -140,8 +140,8 @@ export function FormMessage({
       className={cn(
         "rounded-lg border px-4 py-3 text-sm",
         tone === "success"
-          ? "border-emerald-200 bg-emerald-50 text-emerald-800"
-          : "border-red-200 bg-red-50 text-red-700",
+          ? "border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-200"
+          : "border-red-200 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-200",
       )}
     >
       {children}

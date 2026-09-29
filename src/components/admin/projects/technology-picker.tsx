@@ -59,7 +59,7 @@ export function TechnologyPicker({
                 "rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors focus-ring",
                 active
                   ? "border-accent bg-accent-soft text-accent"
-                  : "border-line bg-surface text-body hover:border-slate-300",
+                  : "border-line bg-surface text-body hover:border-accent-ring",
               )}
             >
               {tech.name}

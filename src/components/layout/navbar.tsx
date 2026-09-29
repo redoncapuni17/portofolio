@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils/cn";
 import { buttonClasses } from "@/components/ui/button";
 import { navLinks } from "./nav-links";
@@ -50,8 +51,11 @@ export function Navbar({ brand }: { brand: string }) {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors focus-ring",
-                    active ? "text-accent" : "text-body hover:text-heading",
+                    "relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus-ring",
+                    "after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-accent after:transition-transform after:duration-300 after:content-['']",
+                    active
+                      ? "text-accent after:scale-x-100"
+                      : "text-body after:scale-x-0 hover:text-heading hover:after:scale-x-100",
                   )}
                 >
                   {link.label}
@@ -61,26 +65,28 @@ export function Navbar({ brand }: { brand: string }) {
           })}
         </ul>
 
-        <div className="hidden md:block">
-          <Link href="/contact" className={buttonClasses({ size: "sm" })}>
-            Hire me
-          </Link>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <div className="hidden md:block">
+            <Link href="/contact" className={buttonClasses({ size: "sm" })}>
+              Hire me
+            </Link>
+          </div>
+          <button
+            type="button"
+            className="inline-flex size-10 items-center justify-center rounded-lg text-heading focus-ring md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="inline-flex size-10 items-center justify-center rounded-lg text-heading focus-ring md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
       </nav>
 
       {open ? (
-        <div id="mobile-menu" className="border-t border-line bg-surface md:hidden">
+        <div id="mobile-menu" className="menu-in border-t border-line bg-surface md:hidden">
           <ul className="container-page flex flex-col py-3">
             {navLinks.map((link) => {
               const active = isActive(pathname, link.href);
@@ -91,7 +97,7 @@ export function Navbar({ brand }: { brand: string }) {
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "block rounded-lg px-3 py-3 text-base font-medium focus-ring",
-                      active ? "bg-accent-soft text-accent" : "text-heading hover:bg-slate-50",
+                      active ? "bg-accent-soft text-accent" : "text-heading hover:bg-wash",
                     )}
                   >
                     {link.label}

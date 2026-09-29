@@ -44,7 +44,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
                   target={href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-lg border border-line text-body transition-colors hover:border-accent hover:text-accent focus-ring"
+                  className="flex size-10 items-center justify-center rounded-lg border border-line text-body transition-[color,transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent focus-ring"
                 >
                   <Icon className="size-4" aria-hidden />
                 </a>

@@ -39,7 +39,7 @@ export default async function ContactPage() {
 
   return (
     <section className="container-page grid gap-12 py-20 lg:grid-cols-[1fr_1fr] lg:gap-16">
-      <div>
+      <div className="enter">
         <SectionHeading
           as="h1"
           eyebrow="Get in touch"
@@ -55,7 +55,7 @@ export default async function ContactPage() {
                   href={href}
                   target={href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 rounded-xl focus-ring"
+                  className="group flex items-center gap-4 rounded-xl transition-transform duration-200 hover:translate-x-1 focus-ring"
                 >
                   <span className="flex size-11 items-center justify-center rounded-xl border border-line bg-surface text-accent transition-colors group-hover:border-accent">
                     <Icon className="size-4" aria-hidden />
@@ -76,13 +76,16 @@ export default async function ContactPage() {
 
         {settings.availability ? (
           <p className="mt-10 inline-flex items-center gap-2 text-sm text-body">
-            <span className="size-2 rounded-full bg-emerald-500" aria-hidden />
+            <span className="pulse-dot size-2 rounded-full bg-emerald-500" aria-hidden />
             {settings.availability}
           </p>
         ) : null}
       </div>
 
-      <div className="rounded-3xl border border-line bg-surface p-6 shadow-card sm:p-8">
+      <div
+        className="enter rounded-3xl border border-line bg-surface p-6 shadow-card sm:p-8"
+        style={{ animationDelay: "120ms" }}
+      >
         <ContactForm />
       </div>
     </section>

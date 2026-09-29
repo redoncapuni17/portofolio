@@ -18,6 +18,7 @@ import {
   Wrench,
   X,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils/cn";
 
 const items = [
@@ -63,7 +64,7 @@ export function AdminSidebar({
             aria-current={active ? "page" : undefined}
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors focus-ring",
-              active ? "bg-accent-soft text-accent" : "text-body hover:bg-slate-100 hover:text-heading",
+              active ? "bg-accent-soft text-accent" : "text-body hover:bg-wash hover:text-heading",
             )}
           >
             <Icon className="size-4 shrink-0" aria-hidden />
@@ -84,7 +85,7 @@ export function AdminSidebar({
       <Link
         href="/"
         target="_blank"
-        className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-body hover:bg-slate-100 hover:text-heading focus-ring"
+        className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-body hover:bg-wash hover:text-heading focus-ring"
       >
         <ExternalLink className="size-4" aria-hidden />
         View site
@@ -92,15 +93,18 @@ export function AdminSidebar({
       <form action="/auth/signout" method="post">
         <button
           type="submit"
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-body hover:bg-slate-100 hover:text-heading focus-ring"
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-body hover:bg-wash hover:text-heading focus-ring"
         >
           <LogOut className="size-4" aria-hidden />
           Logout
         </button>
       </form>
-      <p className="mt-3 truncate px-3 text-xs text-muted" title={email}>
-        {email}
-      </p>
+      <div className="mt-3 flex items-center justify-between gap-2 px-3">
+        <p className="truncate text-xs text-muted" title={email}>
+          {email}
+        </p>
+        <ThemeToggle className="size-9 shrink-0 shadow-none max-lg:hidden" />
+      </div>
     </div>
   );
 
@@ -111,16 +115,19 @@ export function AdminSidebar({
         <Link href="/admin" className="text-sm font-semibold text-heading focus-ring rounded">
           {brand} <span className="text-muted">/ Admin</span>
         </Link>
-        <button
-          type="button"
-          className="inline-flex size-9 items-center justify-center rounded-lg text-heading focus-ring"
-          aria-expanded={open}
-          aria-controls="admin-sidebar"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle className="size-9 shadow-none" />
+          <button
+            type="button"
+            className="inline-flex size-9 items-center justify-center rounded-lg text-heading focus-ring"
+            aria-expanded={open}
+            aria-controls="admin-sidebar"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </div>
 
       {open ? (

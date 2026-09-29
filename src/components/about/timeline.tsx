@@ -14,7 +14,7 @@ export function Timeline({ items, title }: { items: Experience[]; title: string 
       {items.length === 0 ? (
         <p className="mt-4 text-sm text-muted">Nothing here yet.</p>
       ) : (
-        <ol className="mt-6 space-y-6 border-l border-line pl-6">
+        <ol className="stagger mt-6 space-y-6 border-l border-line pl-6">
           {items.map((item) => (
             <li key={item.id} className="relative">
               <span

@@ -9,7 +9,7 @@ export function ProjectMeta({ project }: { project: ProjectDetail }) {
   ].filter((row): row is { label: string; value: string } => Boolean(row.value));
 
   return (
-    <aside className="rounded-2xl border border-line bg-surface p-6 shadow-soft">
+    <aside className="enter rounded-2xl border border-line bg-surface p-6 shadow-soft" style={{ animationDelay: "200ms" }}>
       <dl className="space-y-4">
         {rows.map((row) => (
           <div key={row.label}>

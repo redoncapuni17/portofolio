@@ -12,7 +12,7 @@ export function Table({ children, className }: { children: ReactNode; className?
 }
 
 export function THead({ children }: { children: ReactNode }) {
-  return <thead className="bg-slate-50 text-xs font-semibold uppercase tracking-wider text-muted">{children}</thead>;
+  return <thead className="bg-wash text-xs font-semibold uppercase tracking-wider text-muted">{children}</thead>;
 }
 
 export function TBody({ children }: { children: ReactNode }) {

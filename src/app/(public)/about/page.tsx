@@ -33,7 +33,7 @@ export default async function AboutPage() {
   return (
     <>
       <section className="container-page grid gap-12 py-20 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-        <div>
+        <div className="enter">
           <SectionHeading
             as="h1"
             eyebrow="About me"
@@ -56,8 +56,12 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
+        <div className="enter relative mx-auto w-full max-w-md" style={{ animationDelay: "140ms" }}>
+          <div
+            className="glow-orb absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-soft via-transparent to-transparent"
+            aria-hidden
+          />
+          <div className="float-soft relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
             {settings.profile_image ? (
               <Image
                 src={settings.profile_image}
@@ -68,7 +72,7 @@ export default async function AboutPage() {
                 className="object-cover"
               />
             ) : (
-              <div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-50 to-accent-soft text-6xl font-semibold text-accent/70">
+              <div className="flex h-full items-center justify-center bg-gradient-to-br from-wash to-accent-soft text-6xl font-semibold text-accent/70">
                 {settings.developer_name
                   .split(/\s+/)
                   .slice(0, 2)
@@ -83,6 +87,7 @@ export default async function AboutPage() {
       <section className="border-t border-line bg-surface">
         <div className="container-page py-20">
           <SectionHeading
+            className="reveal"
             eyebrow="Skills"
             title="What I work with"
             description="The tools and technologies I reach for most often, grouped by where they fit in the stack."
@@ -94,7 +99,7 @@ export default async function AboutPage() {
       </section>
 
       <section className="container-page py-20">
-        <SectionHeading eyebrow="Background" title="Experience & Education" />
+        <SectionHeading className="reveal" eyebrow="Background" title="Experience & Education" />
         <div className="mt-10 grid gap-12 lg:grid-cols-2">
           <Timeline items={work} title="Experience" />
           <Timeline items={education} title="Education" />

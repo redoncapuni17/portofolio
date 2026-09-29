@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/motion/count-up";
 import type { SiteSettings } from "@/types";
 
 export function Stats({ settings }: { settings: SiteSettings }) {
@@ -10,14 +11,15 @@ export function Stats({ settings }: { settings: SiteSettings }) {
 
   return (
     <section className="container-page py-20">
-      <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => (
-          <div
-            key={item.label}
-            className="rounded-2xl border border-line bg-surface p-6 shadow-soft"
-          >
-            <dt className="text-sm text-body">{item.label}</dt>
-            <dd className="mt-2 text-3xl font-semibold text-heading">{item.value}</dd>
+          <div key={item.label} className="h-full">
+            <div className="hover-lift h-full rounded-2xl border border-line bg-surface p-6 shadow-soft hover:border-accent-ring">
+              <dt className="text-sm text-body">{item.label}</dt>
+              <dd className="mt-2 text-3xl font-semibold text-heading">
+                <CountUp value={item.value} />
+              </dd>
+            </div>
           </div>
         ))}
       </dl>

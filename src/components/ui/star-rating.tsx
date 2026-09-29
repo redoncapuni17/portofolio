@@ -9,7 +9,7 @@ export function StarRating({ value, max = 5 }: { value: number; max?: number }) 
           key={index}
           className={cn(
             "size-4",
-            index < value ? "fill-amber-400 text-amber-400" : "fill-slate-200 text-slate-200",
+            index < value ? "fill-amber-400 text-amber-400" : "fill-line text-line",
           )}
           aria-hidden
         />

@@ -18,6 +18,7 @@ export default async function TestimonialsPage() {
   return (
     <section className="container-page py-20">
       <SectionHeading
+        className="enter"
         as="h1"
         eyebrow="Testimonials"
         title="What clients say"
@@ -28,7 +29,7 @@ export default async function TestimonialsPage() {
         {testimonials.length === 0 ? (
           <EmptyState title="No testimonials yet" description="Add testimonials from the admin panel." />
         ) : (
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial) => (
               <li key={testimonial.id}>
                 <TestimonialCard testimonial={testimonial} />

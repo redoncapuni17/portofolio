@@ -38,7 +38,7 @@ export function PublishToggle({
       onClick={toggle}
       className={cn(
         "relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus-ring disabled:opacity-60",
-        published ? "bg-accent" : "bg-slate-300",
+        published ? "bg-accent" : "bg-line",
       )}
     >
       <span

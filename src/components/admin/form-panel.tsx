@@ -19,7 +19,7 @@ export function FormPanel({
         </h2>
         <Link
           href={closeHref}
-          className="inline-flex size-9 items-center justify-center rounded-lg text-body hover:bg-slate-100 hover:text-heading focus-ring"
+          className="inline-flex size-9 items-center justify-center rounded-lg text-body hover:bg-wash hover:text-heading focus-ring"
           aria-label="Close form"
         >
           <X className="size-4" aria-hidden />

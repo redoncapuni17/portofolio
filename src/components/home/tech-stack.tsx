@@ -15,17 +15,16 @@ export function TechStack() {
   return (
     <section className="border-y border-line bg-surface">
       <div className="container-page py-14">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+        <p className="reveal text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
           Technologies I work with
         </p>
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+        <ul className="stagger mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
           {technologies.map((tech) => (
-            <li
-              key={tech.name}
-              className="flex flex-col items-center gap-2.5 rounded-xl border border-line bg-canvas px-3 py-5 text-center transition-colors hover:border-accent-ring"
-            >
-              <Icon name={tech.icon} className="size-6 text-accent" />
-              <span className="text-sm font-medium text-heading">{tech.name}</span>
+            <li key={tech.name} className="h-full">
+              <div className="group hover-lift flex h-full flex-col items-center gap-2.5 rounded-xl border border-line bg-canvas px-3 py-5 text-center hover:border-accent-ring">
+                <Icon name={tech.icon} className="size-6 text-accent transition-transform duration-300 group-hover:scale-110" />
+                <span className="text-sm font-medium text-heading">{tech.name}</span>
+              </div>
             </li>
           ))}
         </ul>

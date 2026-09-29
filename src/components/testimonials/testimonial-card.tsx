@@ -7,7 +7,7 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const role = [testimonial.position, testimonial.company].filter(Boolean).join(", ");
 
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface p-7 shadow-soft">
+    <figure className="hover-lift flex h-full flex-col rounded-2xl border border-line bg-surface p-7 shadow-soft hover:border-accent-ring hover:shadow-card">
       <div className="flex items-center justify-between">
         <Quote className="size-6 text-accent" aria-hidden />
         <StarRating value={testimonial.rating} />

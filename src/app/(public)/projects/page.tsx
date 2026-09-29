@@ -17,6 +17,7 @@ export default async function ProjectsPage() {
   return (
     <section className="container-page py-20">
       <SectionHeading
+        className="enter"
         as="h1"
         eyebrow="Selected work"
         title="Projects"

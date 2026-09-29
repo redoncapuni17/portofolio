@@ -53,13 +53,16 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
     <article className="container-page py-16">
       <Link
         href="/projects"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-heading focus-ring rounded"
+        className="group enter inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-heading focus-ring rounded"
       >
         <ArrowLeft className="size-4" aria-hidden />
         Back to projects
       </Link>
 
-      <header className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <header
+        className="enter mt-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        style={{ animationDelay: "80ms" }}
+      >
         <div className="max-w-2xl">
           {project.project_type ? (
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
@@ -86,7 +89,10 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
       </header>
 
       {project.cover_image ? (
-        <div className="relative mt-12 aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-slate-100 shadow-card">
+        <div
+          className="enter relative mt-12 aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-wash shadow-card"
+          style={{ animationDelay: "160ms" }}
+        >
           <Image
             src={project.cover_image}
             alt={`${project.title} hero screenshot`}
@@ -101,7 +107,7 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
       <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_320px]">
         <div className="space-y-14">
           {project.description ? (
-            <section aria-labelledby="overview">
+            <section className="reveal" aria-labelledby="overview">
               <h2 id="overview" className="text-2xl font-semibold">
                 Overview
               </h2>
@@ -113,7 +119,7 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
             const content = project[key];
             if (!content) return null;
             return (
-              <section key={key} aria-labelledby={key}>
+              <section key={key} className="reveal" aria-labelledby={key}>
                 <h2 id={key} className="text-2xl font-semibold">
                   {title}
                 </h2>
@@ -123,11 +129,11 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
           })}
 
           {project.key_features.length > 0 ? (
-            <section aria-labelledby="features">
+            <section className="reveal" aria-labelledby="features">
               <h2 id="features" className="text-2xl font-semibold">
                 Key Features
               </h2>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              <ul className="stagger mt-5 grid gap-3 sm:grid-cols-2">
                 {project.key_features.map((feature) => (
                   <li
                     key={feature}

@@ -8,20 +8,28 @@ export function Hero({ settings }: { settings: SiteSettings }) {
     <section className="container-page grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-[1.2fr_0.8fr] lg:py-32">
       <div>
         {settings.availability ? (
-          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-body shadow-soft">
-            <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />
+          <p
+            className="enter inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-body shadow-soft"
+            style={{ animationDelay: "40ms" }}
+          >
+            <span className="pulse-dot size-1.5 rounded-full bg-emerald-500" aria-hidden />
             {settings.availability}
           </p>
         ) : null}
 
-        <h1 className="mt-6 text-4xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl">
+        <h1
+          className="enter mt-6 text-4xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl"
+          style={{ animationDelay: "120ms" }}
+        >
           Hi, I&apos;m <span className="text-accent">{settings.developer_name}</span>, a{" "}
           {settings.hero_title}
         </h1>
 
-        <p className="mt-6 max-w-xl text-lg leading-relaxed">{settings.hero_description}</p>
+        <p className="enter mt-6 max-w-xl text-lg leading-relaxed" style={{ animationDelay: "220ms" }}>
+          {settings.hero_description}
+        </p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3">
+        <div className="enter mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "320ms" }}>
           <Button href="/projects" size="lg">
             View Projects
             <ArrowRight className="size-4" aria-hidden />
@@ -32,19 +40,22 @@ export function Hero({ settings }: { settings: SiteSettings }) {
         </div>
 
         {settings.location ? (
-          <p className="mt-8 inline-flex items-center gap-1.5 text-sm text-muted">
+          <p
+            className="enter mt-8 inline-flex items-center gap-1.5 text-sm text-muted"
+            style={{ animationDelay: "420ms" }}
+          >
             <MapPin className="size-4" aria-hidden />
             {settings.location}
           </p>
         ) : null}
       </div>
 
-      <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
+      <div className="enter relative mx-auto w-full max-w-sm lg:max-w-none" style={{ animationDelay: "180ms" }}>
         <div
-          className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-soft via-transparent to-transparent"
+          className="glow-orb absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-soft via-accent-soft/40 to-transparent"
           aria-hidden
         />
-        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
+        <div className="float-soft relative aspect-[4/5] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
           {settings.profile_image ? (
             <Image
               src={settings.profile_image}
@@ -55,7 +66,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
               className="object-cover"
             />
           ) : (
-            <div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-50 to-accent-soft">
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-wash to-accent-soft">
               <span className="text-7xl font-semibold text-accent/70">
                 {settings.developer_name
                   .split(/\s+/)

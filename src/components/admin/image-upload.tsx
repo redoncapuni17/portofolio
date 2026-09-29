@@ -88,7 +88,7 @@ export function ImageUpload({
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-xl border border-dashed border-line bg-slate-50",
+          "relative overflow-hidden rounded-xl border border-dashed border-line bg-wash",
           aspectClass[aspect],
         )}
       >
@@ -97,7 +97,7 @@ export function ImageUpload({
         ) : (
           <label
             htmlFor={inputId}
-            className="flex h-full cursor-pointer flex-col items-center justify-center gap-2 p-6 text-center text-sm text-body hover:bg-slate-100"
+            className="flex h-full cursor-pointer flex-col items-center justify-center gap-2 p-6 text-center text-sm text-body hover:bg-canvas"
           >
             <ImagePlus className="size-6 text-muted" aria-hidden />
             <span>Click to upload</span>
@@ -106,7 +106,7 @@ export function ImageUpload({
         )}
 
         {uploading ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/70" aria-live="polite">
+          <div className="absolute inset-0 flex items-center justify-center bg-surface/80" aria-live="polite">
             <Loader2 className="size-6 animate-spin text-accent" aria-label="Uploading" />
           </div>
         ) : null}

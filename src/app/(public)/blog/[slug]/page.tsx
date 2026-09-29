@@ -47,13 +47,13 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
       <div className="mx-auto max-w-3xl">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-heading focus-ring rounded"
+          className="group enter inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-heading focus-ring rounded"
         >
           <ArrowLeft className="size-4" aria-hidden />
           All articles
         </Link>
 
-        <header className="mt-8">
+        <header className="enter mt-8" style={{ animationDelay: "80ms" }}>
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
             {post.category ? <Badge tone="accent">{post.category}</Badge> : null}
             <time dateTime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time>
@@ -71,7 +71,10 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         </header>
 
         {post.cover_image ? (
-          <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-slate-100 shadow-card">
+          <div
+            className="enter relative mt-10 aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-wash shadow-card"
+            style={{ animationDelay: "160ms" }}
+          >
             <Image
               src={post.cover_image}
               alt=""
@@ -83,7 +86,9 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           </div>
         ) : null}
 
-        <RichText content={post.content} className="mt-12 text-lg" />
+        <div className="reveal">
+          <RichText content={post.content} className="mt-12 text-lg" />
+        </div>
       </div>
     </article>
   );

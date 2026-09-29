@@ -21,6 +21,7 @@ export default async function ServicesPage() {
     <>
       <section className="container-page py-20">
         <SectionHeading
+          className="enter"
           as="h1"
           eyebrow="What I do"
           title="Services"
@@ -31,7 +32,7 @@ export default async function ServicesPage() {
           {services.length === 0 ? (
             <EmptyState title="No services listed yet" description="Add services from the admin panel." />
           ) : (
-            <ul className="grid gap-6 md:grid-cols-3">
+            <ul className="stagger grid gap-6 md:grid-cols-3">
               {services.map((service) => (
                 <li key={service.id}>
                   <ServiceCard service={service} />
@@ -40,7 +41,7 @@ export default async function ServicesPage() {
             </ul>
           )}
         </div>
-        <div className="mt-12 flex justify-center">
+        <div className="reveal mt-12 flex justify-center">
           <Button href="/contact" size="lg">
             Discuss your project
           </Button>

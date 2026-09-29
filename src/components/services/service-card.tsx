@@ -4,8 +4,8 @@ import type { Service } from "@/types";
 
 export function ServiceCard({ service }: { service: Service }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-line bg-surface p-7 shadow-soft">
-      <span className="flex size-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
+    <article className="group hover-lift flex h-full flex-col rounded-2xl border border-line bg-surface p-7 shadow-soft hover:border-accent-ring hover:shadow-card">
+      <span className="flex size-11 items-center justify-center rounded-xl bg-accent-soft text-accent transition-transform duration-300 group-hover:scale-110">
         <Icon name={service.icon} className="size-5" />
       </span>
       <h3 className="mt-5 text-lg font-semibold">{service.title}</h3>
