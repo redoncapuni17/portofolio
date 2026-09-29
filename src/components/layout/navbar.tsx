@@ -33,16 +33,16 @@ export function Navbar({ brand }: { brand: string }) {
     .join("");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-canvas/85 backdrop-blur supports-[backdrop-filter]:bg-canvas/70">
-      <nav className="container-page flex h-16 items-center justify-between" aria-label="Main">
-        <Link href="/" className="flex items-center gap-2.5 focus-ring rounded-md">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-xs font-bold text-white">
+    <header className="sticky top-0 z-40 border-b border-line/70 bg-canvas/80 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/65">
+      <nav className="container-page flex h-[var(--nav-height)] items-center justify-between" aria-label="Main">
+        <Link href="/" className="flex items-center gap-2.5 rounded-xl focus-ring">
+          <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-xs font-bold text-white shadow-soft">
             {initials || "•"}
           </span>
           <span className="text-sm font-semibold text-heading">{brand}</span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-0.5 rounded-2xl border border-line/80 bg-surface/80 p-1 shadow-soft lg:flex">
           {navLinks.map((link) => {
             const active = isActive(pathname, link.href);
             return (
@@ -51,11 +51,8 @@ export function Navbar({ brand }: { brand: string }) {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus-ring",
-                    "after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-accent after:transition-transform after:duration-300 after:content-['']",
-                    active
-                      ? "text-accent after:scale-x-100"
-                      : "text-body after:scale-x-0 hover:text-heading hover:after:scale-x-100",
+                    "block rounded-xl px-3 py-1.5 text-sm font-medium transition-colors focus-ring",
+                    active ? "bg-accent-soft text-accent" : "text-body hover:bg-wash hover:text-heading",
                   )}
                 >
                   {link.label}
@@ -67,14 +64,14 @@ export function Navbar({ brand }: { brand: string }) {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link href="/contact" className={buttonClasses({ size: "sm" })}>
               Hire me
             </Link>
           </div>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-lg text-heading focus-ring md:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-xl text-heading focus-ring lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -86,7 +83,7 @@ export function Navbar({ brand }: { brand: string }) {
       </nav>
 
       {open ? (
-        <div id="mobile-menu" className="menu-in border-t border-line bg-surface md:hidden">
+        <div id="mobile-menu" className="menu-in border-t border-line bg-surface lg:hidden">
           <ul className="container-page flex flex-col py-3">
             {navLinks.map((link) => {
               const active = isActive(pathname, link.href);

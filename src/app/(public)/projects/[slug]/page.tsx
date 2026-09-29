@@ -50,7 +50,9 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
   if (!project) notFound();
 
   return (
-    <article className="container-page py-16">
+    <article>
+      <header className="screen-section">
+        <div className="container-page w-full py-8">
       <Link
         href="/projects"
         className="group enter inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-heading focus-ring rounded"
@@ -59,15 +61,13 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
         Back to projects
       </Link>
 
-      <header
+      <div
         className="enter mt-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
         style={{ animationDelay: "80ms" }}
       >
         <div className="max-w-2xl">
           {project.project_type ? (
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-              {project.project_type}
-            </p>
+            <p className="eyebrow">{project.project_type}</p>
           ) : null}
           <h1 className="mt-3 text-4xl font-semibold sm:text-5xl">{project.title}</h1>
           <p className="mt-4 text-lg leading-relaxed">{project.short_description}</p>
@@ -86,8 +86,11 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
             </Button>
           ) : null}
         </div>
+        </div>
+        </div>
       </header>
 
+      <div className="container-page py-16">
       {project.cover_image ? (
         <div
           className="enter relative mt-12 aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-wash shadow-card"
@@ -153,6 +156,7 @@ export default async function ProjectDetailPage({ params }: PageProps<"/projects
         <div className="lg:sticky lg:top-24 lg:self-start">
           <ProjectMeta project={project} />
         </div>
+      </div>
       </div>
     </article>
   );

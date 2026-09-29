@@ -32,7 +32,8 @@ export default async function AboutPage() {
 
   return (
     <>
-      <section className="container-page grid gap-12 py-20 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+      <section className="screen-section">
+        <div className="container-page grid w-full items-center gap-10 py-8 lg:grid-cols-[1fr_0.8fr] lg:gap-16 lg:py-10">
         <div className="enter">
           <SectionHeading
             as="h1"
@@ -56,12 +57,15 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        <div className="enter relative mx-auto w-full max-w-md" style={{ animationDelay: "140ms" }}>
+        <div
+          className="enter relative mx-auto hidden w-full max-w-md lg:block"
+          style={{ animationDelay: "140ms" }}
+        >
           <div
             className="glow-orb absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-soft via-transparent to-transparent"
             aria-hidden
           />
-          <div className="float-soft relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
+          <div className="float-soft relative aspect-[4/3] max-h-[calc(100svh-var(--nav-height)-5rem)] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
             {settings.profile_image ? (
               <Image
                 src={settings.profile_image}
@@ -81,6 +85,7 @@ export default async function AboutPage() {
               </div>
             )}
           </div>
+        </div>
         </div>
       </section>
 

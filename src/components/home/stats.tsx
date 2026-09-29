@@ -10,16 +10,14 @@ export function Stats({ settings }: { settings: SiteSettings }) {
   ];
 
   return (
-    <section className="container-page py-20">
-      <dl className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="container-page py-16 sm:py-20">
+      <dl className="stagger grid gap-px overflow-hidden rounded-3xl border border-line bg-line shadow-soft sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => (
-          <div key={item.label} className="h-full">
-            <div className="hover-lift h-full rounded-2xl border border-line bg-surface p-6 shadow-soft hover:border-accent-ring">
-              <dt className="text-sm text-body">{item.label}</dt>
-              <dd className="mt-2 text-3xl font-semibold text-heading">
-                <CountUp value={item.value} />
-              </dd>
-            </div>
+          <div key={item.label} className="bg-surface px-6 py-7">
+            <dd className="text-3xl font-semibold tracking-tight text-heading">
+              <CountUp value={item.value} />
+            </dd>
+            <dt className="mt-1.5 text-sm text-body">{item.label}</dt>
           </div>
         ))}
       </dl>

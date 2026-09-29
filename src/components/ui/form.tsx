@@ -8,7 +8,7 @@ import type {
 import { cn } from "@/lib/utils/cn";
 
 const control =
-  "w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-heading placeholder:text-muted shadow-xs transition-colors focus-ring focus:border-accent disabled:cursor-not-allowed disabled:bg-wash";
+  "w-full rounded-xl border border-line bg-canvas px-3.5 py-3 text-sm text-heading placeholder:text-muted shadow-xs transition-colors focus-ring focus:border-accent focus:bg-surface disabled:cursor-not-allowed disabled:bg-wash";
 
 export function Label({ className, ...props }: LabelHTMLAttributes<HTMLLabelElement>) {
   return (

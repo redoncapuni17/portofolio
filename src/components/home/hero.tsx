@@ -4,12 +4,19 @@ import { Button } from "@/components/ui/button";
 import type { SiteSettings } from "@/types";
 
 export function Hero({ settings }: { settings: SiteSettings }) {
+  const initials = settings.developer_name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("");
+
   return (
-    <section className="container-page grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-[1.2fr_0.8fr] lg:py-32">
-      <div>
+    <section className="screen-section">
+      <div className="container-page grid w-full items-center gap-8 py-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-10">
+        <div>
         {settings.availability ? (
           <p
-            className="enter inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-body shadow-soft"
+            className="enter inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-body shadow-soft"
             style={{ animationDelay: "40ms" }}
           >
             <span className="pulse-dot size-1.5 rounded-full bg-emerald-500" aria-hidden />
@@ -18,11 +25,11 @@ export function Hero({ settings }: { settings: SiteSettings }) {
         ) : null}
 
         <h1
-          className="enter mt-6 text-4xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl"
+          className="enter mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           style={{ animationDelay: "120ms" }}
         >
-          Hi, I&apos;m <span className="text-accent">{settings.developer_name}</span>, a{" "}
-          {settings.hero_title}
+          Hi, I&apos;m <span className="text-accent">{settings.developer_name}</span>
+          <span className="mt-2 block text-heading/90">{settings.hero_title}</span>
         </h1>
 
         <p className="enter mt-6 max-w-xl text-lg leading-relaxed" style={{ animationDelay: "220ms" }}>
@@ -48,14 +55,17 @@ export function Hero({ settings }: { settings: SiteSettings }) {
             {settings.location}
           </p>
         ) : null}
-      </div>
+        </div>
 
-      <div className="enter relative mx-auto w-full max-w-sm lg:max-w-none" style={{ animationDelay: "180ms" }}>
         <div
-          className="glow-orb absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-soft via-accent-soft/40 to-transparent"
+          className="enter relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none"
+          style={{ animationDelay: "180ms" }}
+        >
+        <div
+          className="glow-orb absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent/25 via-accent-soft to-transparent blur-2xl"
           aria-hidden
         />
-        <div className="float-soft relative aspect-[4/5] overflow-hidden rounded-3xl border border-line bg-surface shadow-card">
+        <div className="float-soft relative aspect-[4/5] max-h-[calc(100svh-var(--nav-height)-5rem)] w-full overflow-hidden rounded-[2rem] border border-line bg-surface shadow-card">
           {settings.profile_image ? (
             <Image
               src={settings.profile_image}
@@ -67,15 +77,17 @@ export function Hero({ settings }: { settings: SiteSettings }) {
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-gradient-to-br from-wash to-accent-soft">
-              <span className="text-7xl font-semibold text-accent/70">
-                {settings.developer_name
-                  .split(/\s+/)
-                  .slice(0, 2)
-                  .map((part) => part[0])
-                  .join("")}
-              </span>
+              <span className="text-7xl font-semibold text-accent/70">{initials}</span>
             </div>
           )}
+        </div>
+
+        {settings.years_experience ? (
+          <p className="absolute -left-3 bottom-8 hidden rounded-2xl border border-line bg-surface/95 px-4 py-3 shadow-card backdrop-blur sm:block">
+            <span className="block text-2xl font-semibold text-heading">{settings.years_experience}+</span>
+            <span className="text-xs text-body">years building</span>
+          </p>
+        ) : null}
         </div>
       </div>
     </section>

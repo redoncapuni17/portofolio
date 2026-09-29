@@ -89,7 +89,9 @@ export function ContactForm() {
         {pending ? "Sending…" : "Send Message"}
         <Send className="size-4" aria-hidden />
       </Button>
-      <p className="text-center text-xs text-muted">I will never share your details.</p>
+      <p className="text-center text-xs leading-relaxed text-muted">
+        I reply within two business days. Your details stay private.
+      </p>
     </form>
   );
 }

@@ -32,8 +32,8 @@ export function HowIWork() {
     <section className="border-t border-line bg-surface" aria-labelledby="how-i-work">
       <div className="container-page py-20">
         <div className="reveal">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Process</p>
-          <h2 id="how-i-work" className="mt-3 text-3xl font-semibold">
+          <p className="eyebrow">Process</p>
+          <h2 id="how-i-work" className="mt-4 text-3xl font-semibold sm:text-4xl">
             How I Work
           </h2>
         </div>

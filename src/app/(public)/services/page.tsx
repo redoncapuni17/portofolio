@@ -19,16 +19,20 @@ export default async function ServicesPage() {
 
   return (
     <>
+      <section className="screen-section">
+        <div className="container-page w-full py-8">
+          <SectionHeading
+            className="enter"
+            as="h1"
+            eyebrow="What I do"
+            title="Services"
+            description="From idea to production, I help teams ship reliable software."
+            align="center"
+          />
+        </div>
+      </section>
       <section className="container-page py-20">
-        <SectionHeading
-          className="enter"
-          as="h1"
-          eyebrow="What I do"
-          title="Services"
-          description="From idea to production, I help teams ship reliable software."
-          align="center"
-        />
-        <div className="mt-12">
+        <div>
           {services.length === 0 ? (
             <EmptyState title="No services listed yet" description="Add services from the admin panel." />
           ) : (

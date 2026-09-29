@@ -16,15 +16,19 @@ export default async function BlogPage() {
   const posts = await getPublishedPosts();
 
   return (
-    <section className="container-page py-20">
-      <SectionHeading
-        className="enter"
-        as="h1"
-        eyebrow="Writing"
-        title="Blog"
-        description="Notes on web performance, architecture and the craft of building software."
-      />
-      <div className="mt-12">
+    <>
+      <section className="screen-section">
+        <div className="container-page w-full py-8">
+          <SectionHeading
+            className="enter"
+            as="h1"
+            eyebrow="Writing"
+            title="Blog"
+            description="Notes on web performance, architecture and the craft of building software."
+          />
+        </div>
+      </section>
+      <section className="container-page py-20">
         {posts.length === 0 ? (
           <EmptyState title="No articles yet" description="Published posts will appear here." />
         ) : (
@@ -36,7 +40,7 @@ export default async function BlogPage() {
             ))}
           </ul>
         )}
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

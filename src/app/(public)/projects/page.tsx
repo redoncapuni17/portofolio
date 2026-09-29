@@ -15,17 +15,21 @@ export default async function ProjectsPage() {
   const projects = await getPublishedProjects();
 
   return (
-    <section className="container-page py-20">
-      <SectionHeading
-        className="enter"
-        as="h1"
-        eyebrow="Selected work"
-        title="Projects"
-        description="A selection of products I have designed, built and shipped — from marketing sites to production APIs."
-      />
-      <div className="mt-12">
+    <>
+      <section className="screen-section">
+        <div className="container-page w-full py-8">
+          <SectionHeading
+            className="enter"
+            as="h1"
+            eyebrow="Selected work"
+            title="Projects"
+            description="A selection of products I have designed, built and shipped — from marketing sites to production APIs."
+          />
+        </div>
+      </section>
+      <section className="container-page py-20">
         <ProjectGrid projects={projects} />
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -6,6 +6,12 @@ import { navLinks } from "./nav-links";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
+  const initials = settings.developer_name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
   const social: { href: string; label: string; Icon: SvgIcon }[] = [];
   if (settings.github_url) social.push({ href: settings.github_url, label: "GitHub", Icon: GithubIcon });
   if (settings.linkedin_url)
@@ -14,20 +20,24 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
   return (
     <footer className="mt-auto border-t border-line bg-surface">
-      <div className="container-page flex flex-col gap-8 py-12 md:flex-row md:items-start md:justify-between">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_auto] md:items-start">
         <div className="max-w-sm">
-          <p className="text-base font-semibold text-heading">{settings.developer_name}</p>
-          <p className="mt-2 text-sm leading-relaxed text-body">{settings.hero_title}</p>
-          {settings.location ? (
-            <p className="mt-2 text-sm text-muted">{settings.location}</p>
-          ) : null}
+          <Link href="/" className="inline-flex items-center gap-2.5 rounded-xl focus-ring">
+            <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-xs font-bold text-white">
+              {initials || "•"}
+            </span>
+            <span className="text-sm font-semibold text-heading">{settings.developer_name}</span>
+          </Link>
+          <p className="mt-4 text-sm leading-relaxed text-body">{settings.hero_title}</p>
+          {settings.location ? <p className="mt-2 text-sm text-muted">{settings.location}</p> : null}
         </div>
 
         <nav aria-label="Footer">
-          <ul className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted">Explore</p>
+          <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-body hover:text-heading focus-ring rounded">
+                <Link href={link.href} className="rounded text-body hover:text-heading focus-ring">
                   {link.label}
                 </Link>
               </li>
@@ -36,21 +46,24 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         </nav>
 
         {social.length > 0 ? (
-          <ul className="flex items-center gap-2">
-            {social.map(({ href, label, Icon }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  target={href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-lg border border-line text-body transition-[color,transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent focus-ring"
-                >
-                  <Icon className="size-4" aria-hidden />
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted">Connect</p>
+            <ul className="mt-4 flex items-center gap-2">
+              {social.map(({ href, label, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target={href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex size-10 items-center justify-center rounded-xl border border-line bg-canvas text-body transition-[color,transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent focus-ring"
+                  >
+                    <Icon className="size-4" aria-hidden />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : null}
       </div>
       <div className="border-t border-line">

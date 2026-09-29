@@ -48,11 +48,16 @@
   html {
     scroll-behavior: smooth;
     color-scheme: light;
+    --nav-height: 4.25rem;
   }
 
   body {
     @apply bg-canvas text-body antialiased;
     font-feature-settings: "cv11", "ss01";
+    background-image:
+      radial-gradient(ellipse 70% 42% at 8% -8%, color-mix(in oklab, var(--color-accent) 16%, transparent), transparent 70%),
+      radial-gradient(ellipse 48% 32% at 100% 0%, color-mix(in oklab, var(--color-accent) 10%, transparent), transparent 68%);
+    background-attachment: fixed;
   }
 
   h1,
@@ -72,6 +77,16 @@
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
+  .screen-section {
+    display: flex;
+    align-items: center;
+    min-height: calc(100svh - var(--nav-height));
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center rounded-full border border-accent-ring bg-accent-soft px-3 py-1 text-xs font-semibold tracking-wide text-accent;
+  }
+
   .focus-ring {
     @apply outline-none focus-visible:ring-2 focus-visible:ring-accent-ring focus-visible:ring-offset-2 focus-visible:ring-offset-canvas;
   }
@@ -84,7 +99,7 @@
   }
 
   .hover-lift:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
   }
 
   .enter {

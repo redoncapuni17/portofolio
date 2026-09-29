@@ -38,7 +38,8 @@ export default async function ContactPage() {
   }
 
   return (
-    <section className="container-page grid gap-12 py-20 lg:grid-cols-[1fr_1fr] lg:gap-16">
+    <section className="screen-section">
+      <div className="container-page grid w-full items-center gap-12 py-8 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-10">
       <div className="enter">
         <SectionHeading
           as="h1"
@@ -87,6 +88,7 @@ export default async function ContactPage() {
         style={{ animationDelay: "120ms" }}
       >
         <ContactForm />
+      </div>
       </div>
     </section>
   );

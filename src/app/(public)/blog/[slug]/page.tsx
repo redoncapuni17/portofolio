@@ -43,8 +43,10 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
   if (!post) notFound();
 
   return (
-    <article className="container-page py-16">
-      <div className="mx-auto max-w-3xl">
+    <article>
+      <header className="screen-section">
+        <div className="container-page w-full py-8">
+        <div className="mx-auto max-w-3xl">
         <Link
           href="/blog"
           className="group enter inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-heading focus-ring rounded"
@@ -53,7 +55,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           All articles
         </Link>
 
-        <header className="enter mt-8" style={{ animationDelay: "80ms" }}>
+        <div className="enter mt-8" style={{ animationDelay: "80ms" }}>
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
             {post.category ? <Badge tone="accent">{post.category}</Badge> : null}
             <time dateTime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time>
@@ -68,8 +70,13 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           </div>
           <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">{post.title}</h1>
           <p className="mt-5 text-lg leading-relaxed">{post.excerpt}</p>
-        </header>
+        </div>
+        </div>
+        </div>
+      </header>
 
+      <div className="container-page py-16">
+      <div className="mx-auto max-w-3xl">
         {post.cover_image ? (
           <div
             className="enter relative mt-10 aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-wash shadow-card"
@@ -89,6 +96,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         <div className="reveal">
           <RichText content={post.content} className="mt-12 text-lg" />
         </div>
+      </div>
       </div>
     </article>
   );

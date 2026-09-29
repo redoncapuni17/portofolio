@@ -16,16 +16,21 @@ export default async function TestimonialsPage() {
   const testimonials = await getPublishedTestimonials();
 
   return (
-    <section className="container-page py-20">
-      <SectionHeading
-        className="enter"
-        as="h1"
-        eyebrow="Testimonials"
-        title="What clients say"
-        description="Feedback from the teams I have worked with."
-        align="center"
-      />
-      <div className="mt-12">
+    <>
+      <section className="screen-section">
+        <div className="container-page w-full py-8">
+          <SectionHeading
+            className="enter"
+            as="h1"
+            eyebrow="Testimonials"
+            title="What clients say"
+            description="Feedback from the teams I have worked with."
+            align="center"
+          />
+        </div>
+      </section>
+      <section className="container-page py-20">
+        <div>
         {testimonials.length === 0 ? (
           <EmptyState title="No testimonials yet" description="Add testimonials from the admin panel." />
         ) : (
@@ -37,7 +42,8 @@ export default async function TestimonialsPage() {
             ))}
           </ul>
         )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

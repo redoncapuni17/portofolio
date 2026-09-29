@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ImageIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ImageIcon } from "lucide-react";
 import { GithubIcon } from "@/components/ui/brand-icons";
 import { Badge } from "@/components/ui/badge";
 import type { ProjectWithTech } from "@/types";
@@ -47,7 +47,14 @@ export function ProjectCard({ project, priority }: { project: ProjectWithTech; p
           </ul>
         ) : null}
 
-        <div className="mt-5 flex items-center gap-4 border-t border-line pt-4 text-sm font-medium">
+        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-line pt-4 text-sm font-medium">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="inline-flex items-center gap-1 text-heading hover:text-accent focus-ring rounded"
+          >
+            View project
+            <ArrowRight className="size-4" aria-hidden />
+          </Link>
           {project.live_url ? (
             <a
               href={project.live_url}

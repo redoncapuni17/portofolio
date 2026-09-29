@@ -16,7 +16,7 @@ export default function PublicError({
 
   return (
     <div className="container-page py-24 text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Error</p>
+      <p className="eyebrow">Error</p>
       <h1 className="mt-3 text-3xl font-semibold">Something went wrong</h1>
       <p className="mx-auto mt-3 max-w-md text-body">
         The page could not be loaded. Please try again in a moment.
