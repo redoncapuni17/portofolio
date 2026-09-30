@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils/cn";
@@ -25,6 +26,22 @@ export function Navbar({ brand }: { brand: string }) {
     setOpen(false);
   }
 
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   const initials = brand
     .split(/\s+/)
     .filter(Boolean)
@@ -33,7 +50,8 @@ export function Navbar({ brand }: { brand: string }) {
     .join("");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-canvas/80 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/65">
+    <>
+      <header className="sticky top-0 z-50 border-b border-line/70 bg-canvas/80 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/65">
       <nav className="container-page flex h-[var(--nav-height)] items-center justify-between" aria-label="Main">
         <Link href="/" className="flex items-center gap-2.5 rounded-xl focus-ring">
           <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-xs font-bold text-white shadow-soft">
@@ -82,34 +100,51 @@ export function Navbar({ brand }: { brand: string }) {
         </div>
       </nav>
 
-      {open ? (
-        <div id="mobile-menu" className="menu-in border-t border-line bg-surface lg:hidden">
-          <ul className="container-page flex flex-col py-3">
-            {navLinks.map((link) => {
-              const active = isActive(pathname, link.href);
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "block rounded-lg px-3 py-3 text-base font-medium focus-ring",
-                      active ? "bg-accent-soft text-accent" : "text-heading hover:bg-wash",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-            <li className="mt-2 px-3 pb-2">
-              <Link href="/contact" className={buttonClasses({ className: "w-full" })}>
-                contact Me
-              </Link>
-            </li>
-          </ul>
-        </div>
-      ) : null}
     </header>
+      {open
+        ? createPortal(
+            <div className="fixed inset-x-0 bottom-0 top-[var(--nav-height)] z-40 lg:hidden">
+              <div
+                className="drawer-backdrop absolute inset-0 bg-slate-950/45 dark:bg-black/72"
+                onClick={() => setOpen(false)}
+              />
+              <div
+                id="mobile-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Menu"
+                className="drawer-panel absolute inset-y-0 right-0 flex w-[min(18.5rem,86vw)] flex-col border-l border-line bg-canvas shadow-card"
+              >
+                <p className="px-5 pt-6 text-xs font-semibold uppercase tracking-wider text-muted">Menu</p>
+                <ul className="mt-3 flex flex-col px-3">
+                  {navLinks.map((link) => {
+                    const active = isActive(pathname, link.href);
+                    return (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          aria-current={active ? "page" : undefined}
+                          className={cn(
+                            "block rounded-xl px-3 py-3 text-base font-medium focus-ring",
+                            active ? "bg-accent-soft text-accent" : "text-heading hover:bg-wash",
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="mt-auto p-5">
+                  <Link href="/contact" className={buttonClasses({ className: "w-full" })}>
+                    Contact Me
+                  </Link>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
+    </>
   );
 }

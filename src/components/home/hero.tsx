@@ -11,7 +11,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
     .join("");
 
   return (
-    <section className="screen-section">
+    <section className="screen-section items-start! lg:items-center!">
       <div className="container-page grid w-full items-center gap-8 py-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-10">
         <div>
         {settings.availability ? (
@@ -58,14 +58,14 @@ export function Hero({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div
-          className="enter relative mx-auto hidden w-full max-w-sm lg:block lg:max-w-none"
+          className="enter relative mx-auto w-full max-w-[16.5rem] sm:max-w-sm lg:max-w-none"
           style={{ animationDelay: "180ms" }}
         >
         <div
-          className="glow-orb absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent/25 via-accent-soft to-transparent blur-2xl"
+          className="glow-orb absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent/25 via-accent-soft to-transparent blur-2xl lg:-inset-8"
           aria-hidden
         />
-        <div className="float-soft relative aspect-[4/5] max-h-[calc(100svh-var(--nav-height)-5rem)] w-full overflow-hidden rounded-[2rem] border border-line bg-surface shadow-card">
+        <div className="float-soft relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] border border-line bg-surface shadow-card lg:max-h-[calc(100svh-var(--nav-height)-5rem)] lg:rounded-[2rem]">
           {settings.profile_image ? (
             <Image
               src={settings.profile_image}
@@ -83,7 +83,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
         </div>
 
         {settings.years_experience ? (
-          <p className="absolute -left-3 bottom-8 hidden rounded-2xl border border-line bg-surface/95 px-4 py-3 shadow-card backdrop-blur sm:block">
+          <p className="absolute bottom-4 left-3 rounded-2xl border border-line bg-surface/95 px-4 py-3 shadow-card backdrop-blur sm:-left-3 sm:bottom-8">
             <span className="block text-2xl font-semibold text-heading">{settings.years_experience}+</span>
             <span className="text-xs text-body">years building</span>
           </p>
